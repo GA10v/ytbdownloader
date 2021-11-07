@@ -1,0 +1,40 @@
+[
+    {
+        "tasks": [{
+            "type" : "single",
+            "description" : "Супер Крылья",
+            "local_path" : "/Users/galo/Downloads/video",
+            "urls" : [
+                "https://www.youtube.com/watch?v=8eud2ZQHK1s",
+                "https://www.youtube.com/watch?v=8eud2ZQHK1s",
+                "https://www.youtube.com/watch?v=8eud2ZQHK1s"
+            ]   
+        }],
+    "enable" : true 
+    },
+    {
+        "tasks": [{
+            "type" : "single",
+            "description" : "Супер Крылья",
+            "local_path" : "/Users/galo/Downloads/video",
+            "urls" : [
+                "https://www.youtube.com/watch?v=8eud2ZQHK1s",
+                "https://www.youtube.com/watch?v=8eud2ZQHK1s",
+                "https://www.youtube.com/watch?v=8eud2ZQHK1s"
+            ]   
+        }],
+    "enable" : true 
+    },
+    {
+        "tasks": [{
+            "type" : "playlist",
+            "description" : "незнайка",
+            "local_path" : "/Users/galo/Downloads/video/незнайка",
+            "urls" : [
+                "https://www.youtube.com/watch?v=fjwF0sCbDtE&list=PL7x1DJTKugPDlSaK0UHPavBovuK8qT38f"
+                
+            ]   
+        }],
+    "enable" : true 
+        }
+]
