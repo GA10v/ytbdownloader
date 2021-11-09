@@ -34,7 +34,7 @@ def download_choicer(config):
 # проверяет ключь "enable" и выбирает как скачивать видео, через YouTube или Playlist
     for i in range(len(config)):
         if config[i]["enable"]:
-            if config[i]['tasks'][0]['type'] == 'single':
+            if config[i]['tasks'][0]['type'] == 'youtube':
                 date = config[i]
                 YouTube_downloader(date)
             elif config[i]['tasks'][0]['type'] == 'playlist':
