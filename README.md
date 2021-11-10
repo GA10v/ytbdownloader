@@ -19,14 +19,13 @@ pip install pytube
 ## Usage
 
 ``` plain
-Usage: ytbdownloader.py.py <options>
+Usage: ytbdownloader.py <options>
 
   Download all Youtube videos to a local directory
 
 Options:
-  -i, --input <config>     Path to a configuration file in JSON format
-  --version                       Show the version and exit.
-  -h, --help                      Show this message and exit.
+  -i, --input <config>    Path to a configuration file in JSON format
+  -h, --help              Show this message and exit.
 ```
 
 Example:
