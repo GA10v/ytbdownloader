@@ -1,7 +1,7 @@
 [
     {
         "tasks": [{
-            "type" : "single",
+            "type" : "youtube",
             "description" : "Супер Крылья",
             "local_path" : "/Users/galo/Downloads/video",
             "urls" : [
@@ -14,7 +14,7 @@
     },
     {
         "tasks": [{
-            "type" : "single",
+            "type" : "youtube",
             "description" : "Супер Крылья",
             "local_path" : "/Users/galo/Downloads/video",
             "urls" : [

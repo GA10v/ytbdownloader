@@ -1,22 +1,37 @@
 from pytube import YouTube 
 from pytube import Playlist 
 import json
+import argparse
 
-def open_json():
+def get_arg():
+    parser = argparse.ArgumentParser(description='Download videos from Youtube')
+    parser.add_argument(
+        '-i', '--input', 
+        type=str, 
+        help='input name of "*.json" file (default is "/config.json") ', # default не по ТЗ, но я хотел попробывать.. сработает или нет
+
+        default='config.json' #не по ТЗ, но я хотел попробывать.. сработает или нет 
+        )
+    args = parser.parse_args()
+
+    return args
+
+def open_json(args):
 # пытается найти и открыть файл config.json 
+
     try:
-        config = json.load(open('config.json'))
+        config = json.load(open(args.input))
         return config
     except:
         config = None
-        print('не нашел config.json')
+        print('не нашел *.json файл')
         return config
 
 def download_choicer(config):
 # проверяет ключь "enable" и выбирает как скачивать видео, через YouTube или Playlist
     for i in range(len(config)):
         if config[i]["enable"]:
-            if config[i]['tasks'][0]['type'] == 'single':
+            if config[i]['tasks'][0]['type'] == 'youtube':
                 date = config[i]
                 YouTube_downloader(date)
             elif config[i]['tasks'][0]['type'] == 'playlist':
@@ -51,6 +66,6 @@ def Playlist_downloader(date):
                 download(SAVE_PATH)
     
 
-
-config = open_json()
+args = get_arg()
+config = open_json(args)
 download_choicer(config)
