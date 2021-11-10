@@ -2,6 +2,9 @@ from pytube import YouTube
 from pytube import Playlist 
 import json
 import argparse
+import sys
+
+CONFIG_FILE = 'config.json'
 
 def get_arg():
     parser = argparse.ArgumentParser(description='Download videos from Youtube')
@@ -16,46 +19,53 @@ def get_arg():
 
     return args
 
-def open_json(args):
-# пытается найти и открыть файл config.json 
-
+def load_config(filename):
+    """Load configuration from a specified file"""
     try:
-        config = json.load(open(args.input))
+        fd = open(filename)
+        config = json.load(fd)
         return config
+    except FileNotFoundError as e:
+        print('File not found: ' + filename)
+        raise
     except:
-        config = None
-        print('не нашел *.json файл')
-        return config
+        print('Error while processing file ' + filename)
+        raise
 
-def download_choicer(config):
-# проверяет ключь "enable" и выбирает как скачивать видео, через YouTube или Playlist
+def download(config):
+    """Start download process by processing configuration""" 
     for i in range(len(config)):
+        # Check if 'enable' tag is true
         if config[i]["enable"]:
-            if config[i]['tasks'][0]['type'] == 'youtube':
-                date = config[i]
-                YouTube_downloader(date)
-            elif config[i]['tasks'][0]['type'] == 'playlist':
-                date = config[i]
-                Playlist_downloader(date)
+            content = config[i]
+            type = config[i]['tasks'][0]['type']
+            if type == 'youtube':
+                # download youtube urls
+                process_urls(content)
+            elif type == 'playlist':
+                # download playlist
+                process_playlist(content)
+            else:
+                raise ValueError('Unknown type: ' + type)
     
-def YouTube_downloader(date):
-# скачивает видео через YouTube
-    SAVE_PATH = date['tasks'][0]['local_path']
-    for q in range(len(date['tasks'][0]['urls'])):
-        video = YouTube(date['tasks'][0]['urls'][q])
+def process_urls(content):
+    # Process YouTube urls
+    path = content['tasks'][0]['local_path']
+    for q in range(len(content['tasks'][0]['urls'])):
+        video = YouTube(content['tasks'][0]['urls'][q])
         print('downloading : {} with url : {}'.format(video.title, video.watch_url))
         video.streams.\
         filter(progressive=True, file_extension='mp4').\
         order_by('resolution').\
         desc().\
         first().\
-        download(SAVE_PATH)
+        download(path)
         
-def Playlist_downloader(date):
-#  скачивает видео через Playlist 
-    SAVE_PATH = date['tasks'][0]['local_path']
-    for i in range(len(date['tasks'][0]['urls'])):
-        playlist = Playlist(date['tasks'][0]['urls'][i])
+def process_playlist(content):
+#  Process YouTube Playlist 
+    path = content['tasks'][0]['local_path']
+    for i in range(len(content['tasks'][0]['urls'])):
+        playlist = Playlist(content['tasks'][0]['urls'][i])
         for video in playlist.videos:
             print('downloading : {} with url : {}'.format(video.title, video.watch_url))
             video.streams.\
@@ -63,9 +73,9 @@ def Playlist_downloader(date):
                 order_by('resolution').\
                 desc().\
                 first().\
-                download(SAVE_PATH)
+                download(path)
     
 
 args = get_arg()
-config = open_json(args)
-download_choicer(config)
+cfg = load_config(args.input)
+download(cfg)
