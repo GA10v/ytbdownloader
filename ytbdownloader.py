@@ -39,7 +39,7 @@ def download(config):
         if config[i]["enable"]:
             content = config[i]
             type = config[i]['tasks'][0]['type']
-            if type == 'single':
+            if type == 'youtube':
                 # download youtube urls
                 process_urls(content)
             elif type == 'playlist':
