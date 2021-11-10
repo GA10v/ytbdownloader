@@ -1,15 +1,29 @@
 from pytube import YouTube 
 from pytube import Playlist 
 import json
+import argparse
 import sys
 
 CONFIG_FILE = 'config.json'
 
+def get_arg():
+    parser = argparse.ArgumentParser(description='Download videos from Youtube')
+    parser.add_argument(
+        '-i', '--input', 
+        type=str, 
+        help='input name of "*.json" file (default is "/config.json") ', # default не по ТЗ, но я хотел попробывать.. сработает или нет
+
+        default='config.json' #не по ТЗ, но я хотел попробывать.. сработает или нет 
+        )
+    args = parser.parse_args()
+
+    return args
+
 def load_config(filename):
     """Load configuration from a specified file"""
     try:
-        file = open(filename)
-        config = json.load(file)
+        fd = open(filename)
+        config = json.load(fd)
         return config
     except FileNotFoundError as e:
         print('File not found: ' + filename)
@@ -61,5 +75,7 @@ def process_playlist(content):
                 first().\
                 download(path)
     
-cfg = load_config(CONFIG_FILE)
+
+args = get_arg()
+cfg = load_config(args.input)
 download(cfg)
