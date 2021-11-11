@@ -24,14 +24,14 @@ Usage: ytbdownloader.py <options>
   Download all Youtube videos to a local directory
 
 Options:
-  -i, --input <config>    Path to a configuration file in JSON format
-  -h, --help              Show this message and exit.
+  input <config>    Path to a configuration file in JSON format (Required)
+  -h, --help        Show this message and exit.
 ```
 
 Example:
 
 ``` sh
-$ ytbdownloader.py -i ./config.json
+$ ytbdownloader.py input ./config.json
 ```
 
 ## Thanks ❤️
