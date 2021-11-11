@@ -13,7 +13,6 @@ def get_arg():
         '-i', '--input', 
         type=str, 
         help='input name of "*.json" file ', 
-
         )
     args = parser.parse_args()
 
