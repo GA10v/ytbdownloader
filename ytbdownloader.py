@@ -34,25 +34,29 @@ def load_config(filename):
 
 def download(config):
     """Start download process by processing configuration""" 
-    for i in range(len(config['tasks'])):
+    tasks = config['tasks']
+    for i in range(len(tasks)):
+        task = tasks[i]
+        is_enable = task['enable']
         # Check if 'enable' tag is true
-        if config['tasks'][i]['enable']:
-            content = config['tasks'][i]
-            type = content['type']
+        if is_enable:
+            type = task['type']
             if type == 'youtube':
                 # download youtube urls
-                process_urls(content)
+                process_urls(task)
             elif type == 'playlist':
                 # download playlist
-                process_playlist(content)
+                process_playlist(task)
             else:
                 raise ValueError('Unknown type:' + type)
     
 def process_urls(content):
     # Process YouTube urls
     path = content['local_path']
-    for q in range(len(content['urls'])):
-        video = YouTube(content['urls'][q])
+    urls = content['urls']
+    for q in range(len(urls)):
+        url = urls[q]
+        video = YouTube(url)
         print('downloading : {} with url : {}'.format(video.title, video.watch_url))
         video.streams.\
         filter(progressive=True, file_extension='mp4').\
@@ -64,8 +68,10 @@ def process_urls(content):
 def process_playlist(content):
 #  Process YouTube Playlist 
     path = content['local_path']
-    for i in range(len(content['urls'])):
-        playlist = Playlist(content['urls'][i])
+    urls = content['urls']
+    for i in range(len(urls)):
+        url = urls[i]
+        playlist = Playlist(url)
         for video in playlist.videos:
             print('downloading : {} with url : {}'.format(video.title, video.watch_url))
             video.streams.\
