@@ -10,7 +10,7 @@ def get_arg():
     ''''''   
     parser = argparse.ArgumentParser(description='"Ytbdownloader" - A command-line tool to download videos from Youtube. The tool can process playlists and links directly. Also, flexible settings might be set via json configuration file')
     parser.add_argument(
-        '-i', '--input', 
+        'input', 
         type=str, 
         help='input name of "*.json" file ', 
         )
@@ -25,11 +25,6 @@ def load_config(filename):
         fd = open(filename)
         config = json.load(fd)
         return config
-    
-    except TypeError as t:
-        print('Use Help with "-h" arg')
-        exit()
-
 
     except FileNotFoundError as e:
         print('File not found: ' + filename)
