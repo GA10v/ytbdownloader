@@ -7,17 +7,18 @@ import sys
 CONFIG_FILE = 'config.json'
 
 def get_arg():
-    parser = argparse.ArgumentParser(description='Download videos from Youtube')
+    ''''''   
+    parser = argparse.ArgumentParser(description='"Ytbdownloader" - A command-line tool to download videos from Youtube. The tool can process playlists and links directly. Also, flexible settings might be set via json configuration file')
     parser.add_argument(
         '-i', '--input', 
         type=str, 
-        help='input name of "*.json" file (default is "/config.json") ', 
+        help='input name of "*.json" file ', 
 
-        default='config.json' 
         )
     args = parser.parse_args()
 
     return args
+  
 
 def load_config(filename):
     """Load configuration from a specified file"""
@@ -25,6 +26,12 @@ def load_config(filename):
         fd = open(filename)
         config = json.load(fd)
         return config
+    
+    except TypeError as t:
+        print('Use Help with "-h" arg')
+        exit()
+
+
     except FileNotFoundError as e:
         print('File not found: ' + filename)
         raise
