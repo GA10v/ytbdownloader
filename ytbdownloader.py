@@ -11,9 +11,9 @@ def get_arg():
     parser.add_argument(
         '-i', '--input', 
         type=str, 
-        help='input name of "*.json" file (default is "/config.json") ', # default не по ТЗ, но я хотел попробывать.. сработает или нет
+        help='input name of "*.json" file (default is "/config.json") ', 
 
-        default='config.json' #не по ТЗ, но я хотел попробывать.. сработает или нет 
+        default='config.json' 
         )
     args = parser.parse_args()
 
@@ -34,25 +34,29 @@ def load_config(filename):
 
 def download(config):
     """Start download process by processing configuration""" 
-    for i in range(len(config)):
+    tasks = config['tasks']
+    for i in range(len(tasks)):
+        task = tasks[i]
+        is_enable = task['enable']
         # Check if 'enable' tag is true
-        if config[i]["enable"]:
-            content = config[i]
-            type = config[i]['tasks'][0]['type']
+        if is_enable:
+            type = task['type']
             if type == 'youtube':
                 # download youtube urls
-                process_urls(content)
+                process_urls(task)
             elif type == 'playlist':
                 # download playlist
-                process_playlist(content)
+                process_playlist(task)
             else:
-                raise ValueError('Unknown type: ' + type)
+                raise ValueError('Unknown type:' + type)
     
 def process_urls(content):
     # Process YouTube urls
-    path = content['tasks'][0]['local_path']
-    for q in range(len(content['tasks'][0]['urls'])):
-        video = YouTube(content['tasks'][0]['urls'][q])
+    path = content['local_path']
+    urls = content['urls']
+    for q in range(len(urls)):
+        url = urls[q]
+        video = YouTube(url)
         print('downloading : {} with url : {}'.format(video.title, video.watch_url))
         video.streams.\
         filter(progressive=True, file_extension='mp4').\
@@ -63,9 +67,11 @@ def process_urls(content):
         
 def process_playlist(content):
 #  Process YouTube Playlist 
-    path = content['tasks'][0]['local_path']
-    for i in range(len(content['tasks'][0]['urls'])):
-        playlist = Playlist(content['tasks'][0]['urls'][i])
+    path = content['local_path']
+    urls = content['urls']
+    for i in range(len(urls)):
+        url = urls[i]
+        playlist = Playlist(url)
         for video in playlist.videos:
             print('downloading : {} with url : {}'.format(video.title, video.watch_url))
             video.streams.\
