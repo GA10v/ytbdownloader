@@ -26,9 +26,6 @@ jobs:
     
     - name: Lint
       run: python3 -m pylint ytbdownloader --fail-under=3
-        
-    - name: Test
-      run: pytest --junitxml=reports/junit/junit.xml --html=reports/junit/report.html
 
-    - name: Coverage Test report
+    - name: Test report
       run: coverage run -m pytest -v
