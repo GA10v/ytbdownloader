@@ -25,7 +25,7 @@ jobs:
       run: pip3 install -r requirements-pip.txt -r requirements.txt -r requirements-test.txt
     
     - name: Lint
-      run: python3 -m pylint ytbdownloader/
+      run: python3 -m pylint ytbdownloader
         
     - name: Test
       run: coverage run -m pytest
