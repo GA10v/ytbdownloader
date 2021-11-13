@@ -28,7 +28,7 @@ jobs:
       run: python3 -m pylint ytbdownloader --fail-under=3
         
     - name: Test
-      run: coverage run -m pytest
+      run: coverage run -m pytest -v
 
     - name: Tests report
       run: coverage report
