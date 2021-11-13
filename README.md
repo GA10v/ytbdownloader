@@ -1,5 +1,5 @@
-[![Tests Status](./quality/reports/junit/junit-badge.svg?dummy=8484744)](./quality/reports/junit/report.html)
-[![Coverage Status](./quality/reports/coverage/coverage-badge.svg?dummy=8484744)](./quality/reports/coverage/index.html)
+[![Tests Status](./quality/reports/junit/junit-badge.svg?dummy=8484744)](https://htmlpreview.github.io/?https://github.com/digal25/ytbdownloader/blob/master/quality/reports/junit/report.html)
+[![Coverage Status](./quality/reports/coverage/coverage-badge.svg?dummy=8484744)](https://htmlpreview.github.io/?https://github.com/digal25/ytbdownloader/blob/master/quality/reports/coverage/index.html)
 
 # ytbdownloader
 
