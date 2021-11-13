@@ -40,7 +40,7 @@ jobs:
       run: coverage report
 
     - name: XML-format Coverage report
-      run: coverage xml -o ./reports/coverage/coverage.xm
+      run: coverage xml -o ./reports/coverage/coverage.xml
 
     - name: HTML-format Coverage report
       run: coverage html -d ./reports/coverage/html
