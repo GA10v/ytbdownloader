@@ -22,7 +22,7 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
-      run: pip3 install -r requirements-pip.txt -r requirements.txt -r requirements-test.txt
+      run: pip3 install -r ./requirements/requirements-pip.txt -r ./requirements/requirements.txt -r ./requirements/requirements-test.txt
     
     - name: Lint
       run: python3 -m pylint ytbdownloader --fail-under=3
@@ -30,22 +30,5 @@ jobs:
     - name: Test
       run: pytest --junitxml=reports/junit/junit.xml --html=reports/junit/report.html
 
-    - name: Test badge
-      run: genbadge tests -o ./reports/junit/junit-badge.svg
-
-    - name: Coverage
+    - name: Coverage Test report
       run: coverage run -m pytest -v
-
-    - name: Coverage report
-      run: coverage report
-
-    - name: XML-format Coverage report
-      run: coverage xml -o ./reports/coverage/coverage.xml
-
-    - name: HTML-format Coverage report
-      run: coverage html -d ./reports/coverage/html
-
-    - name: Coverage badge
-      run: genbadge coverage -o ./reports/coverage/coverage-badge.svg
-
-        

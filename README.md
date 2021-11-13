@@ -1,5 +1,5 @@
-[![Tests Status](./reports/junit/junit-badge.svg?dummy=8484744)](./reports/junit/report.html)
-[![Coverage Status](./reports/coverage/coverage-badge.svg?dummy=8484744)](./reports/coverage/index.html)
+[![Tests Status](./quality/reports/junit/junit-badge.svg?dummy=8484744)](./quality/reports/junit/report.html)
+[![Coverage Status](./quality/reports/coverage/coverage-badge.svg?dummy=8484744)](./quality/reports/coverage/index.html)
 
 # ytbdownloader
 
