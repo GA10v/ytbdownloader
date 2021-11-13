@@ -28,9 +28,24 @@ jobs:
       run: python3 -m pylint ytbdownloader --fail-under=3
         
     - name: Test
+      run: pytest --junitxml=reports/junit/junit.xml --html=reports/junit/report.html
+
+    - name: Test badge
+      run: genbadge tests -o ./reports/junit/junit-badge.svg
+
+    - name: Coverage
       run: coverage run -m pytest -v
 
-    - name: Tests report
+    - name: Coverage report
       run: coverage report
+
+    - name: XML-format Coverage report
+      run: coverage xml -o ./reports/coverage/coverage.xm
+
+    - name: HTML-format Coverage report
+      run: coverage html -d ./reports/coverage/html
+
+    - name: Coverage badge
+      run: genbadge coverage -o ./reports/coverage/coverage-badge.svg
 
         

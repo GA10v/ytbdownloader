@@ -1,3 +1,6 @@
+[![Tests Status](./reports/junit/junit-badge.svg?dummy=8484744)](./reports/junit/report.html)
+[![Coverage Status](./reports/coverage/coverage-badge.svg?dummy=8484744)](./reports/coverage/index.html)
+
 # ytbdownloader
 
 A command-line tool to download videos from Youtube. The tool can process playlists and links directly. Also, flexible settings might be set via json configuration file.
