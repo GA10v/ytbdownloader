@@ -1,0 +1,14 @@
+language: python
+cache: pip
+python:
+  - "3.8"
+install:
+  - pip install -r requirements.txt
+  - pip install -r requirements-test.txt
+
+script:
+  - py.test --cov=ytbdownloader --cov-report term-missing --timeout=3
+  - pylint ytbdownloader
+
+after_success:
+  - coveralls
