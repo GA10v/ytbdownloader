@@ -7,7 +7,7 @@ import sys
 CONFIG_FILE = 'config.json'
 
 def get_arg():
-    ''''''   
+    '''Returns passed arguments'''   
     parser = argparse.ArgumentParser(description='"Ytbdownloader" - A command-line tool to download videos from Youtube. The tool can process playlists and links directly. Also, flexible settings might be set via json configuration file')
     parser.add_argument(
         'input', 
