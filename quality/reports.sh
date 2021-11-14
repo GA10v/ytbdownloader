@@ -10,8 +10,6 @@ echo "Generating Test badge..."
 genbadge tests -o ./reports/junit/junit-badge.svg
 echo "Running Coverage..."
 pytest ../tests/ --cov=../ytbdownloader
-echo "Creating Coverage report..."
-coverage report
 echo "Creating XML-formatted Coverage report..."
 coverage xml -o ./reports/coverage/coverage.xml
 echo "Creating HTML-formatted Coverage report..."
