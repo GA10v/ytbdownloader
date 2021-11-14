@@ -27,5 +27,5 @@ jobs:
     - name: Lint
       run: pylint ytbdownloader --fail-under=3
 
-    - name: Test report
-      run: coverage run -m pytest -v
+    - name: Test & Coverage reports
+      run: pytest --cov=ytbdownloader -v
