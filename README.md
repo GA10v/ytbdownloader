@@ -24,7 +24,7 @@ pip install pytube
 ``` plain
 usage: ytbdownloader.py [-h] input
 
-A command-line tool to download videos from Youtube. The tool can process playlists and links directly. Also, flexible settings might be set via json configuration file.
+  A command-line tool to download videos from Youtube.
 
 positional arguments:
   input       input name of "*.json" file
