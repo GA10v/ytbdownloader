@@ -1,4 +1,5 @@
 import unittest
+import ytbdownloader.base
 
 
 class TestSample(unittest.TestCase):

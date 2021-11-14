@@ -9,7 +9,7 @@ pytest .. --junitxml=reports/junit/junit.xml --html=reports/junit/report.html
 echo "Generating Test badge..."
 genbadge tests -o ./reports/junit/junit-badge.svg
 echo "Running Coverage..."
-coverage run -m pytest -v ..
+pytest ../tests/ --cov=../ytbdownloader
 echo "Creating Coverage report..."
 coverage report
 echo "Creating XML-formatted Coverage report..."
