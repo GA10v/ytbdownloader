@@ -1,3 +1,6 @@
+[![Tests Status](./quality/reports/junit/junit-badge.svg?dummy=8484744)](https://htmlpreview.github.io/?https://github.com/digal25/ytbdownloader/blob/master/quality/reports/junit/report.html)
+[![Coverage Status](./quality/reports/coverage/coverage-badge.svg?dummy=8484744)](https://htmlpreview.github.io/?https://github.com/digal25/ytbdownloader/blob/master/quality/reports/coverage/html/index.html)
+
 # ytbdownloader
 
 A command-line tool to download videos from Youtube. The tool can process playlists and links directly. Also, flexible settings might be set via json configuration file.
@@ -19,19 +22,21 @@ pip install pytube
 ## Usage
 
 ``` plain
-Usage: ytbdownloader.py <options>
+usage: ytbdownloader.py [-h] input
 
-  Download all Youtube videos to a local directory
+  A command-line tool to download videos from Youtube.
 
-Options:
-  input <config>    Path to a configuration file in JSON format (Required)
-  -h, --help        Show this message and exit.
+positional arguments:
+  input       input name of "*.json" file
+
+optional arguments:
+  -h, --help  show this help message and exit
 ```
 
 Example:
 
 ``` sh
-$ ytbdownloader.py input ./config.json
+$ ytbdownloader.py ./config.json
 ```
 
 ## Thanks ❤️
