@@ -1,6 +1,7 @@
 from pytube import YouTube 
 from pytube import Playlist
 from pytube import exceptions
+import traceback
 import json
 import argparse
 import sys
@@ -71,8 +72,9 @@ def process_urls(content):
         except exceptions.VideoUnavailable:
             print('The video is unavailable for the url: {}'.format(url))
             # continue
-        except exceptions.PytubeError:
+        except exceptions.PytubeError as error:
             print('Error while processing the url: {}'.format(url))
+            traceback.print_tb(error.__traceback__)
             # continue
         # if any PytubeError occurs, let log the error and continue processing other urls.
 
@@ -82,36 +84,23 @@ def process_playlist(content):
     urls = content['urls']
     for i in range(len(urls)):
         url = urls[i]
-        try:
-            playlist = Playlist(url)
-        except exceptions.RegexMatchError:
-            print('The playlist url has wrong format: {}'.format(url))
-            # continue
-        except exceptions.VideoUnavailable:
-            print('The video is unavailable for the playlist url: {}'.format(url))
-            # continue
-        except exceptions.PytubeError:
-            print('Error while processing the playlist url: {}'.format(url))
-            # continue
-        else:
-            if (len(playlist.videos) == 0):
-                print('Unable to obtain any video from the playlist url: {}'.format(url))
-            else:
-                for video in playlist.videos:
-                    try:
-                        print('downloading : {} with url : {}'.format(video.title, video.watch_url))
-                        video.streams.\
-                            filter(type='video', progressive=True, file_extension='mp4').\
-                            order_by('resolution').\
-                            desc().\
-                            first().\
-                            download(path)
-                    except exceptions.VideoUnavailable:
-                        print('The following video is unavailable: {}'.format(video))
-                        # continue
-                    except exceptions.PytubeError:
-                        print('Error while processing the video {} from the playlist url: {}'.format(video, url))
-                        #continue
+        playlist = Playlist(url)
+        for video in playlist.videos:
+            try:
+                print('downloading : {} with url : {}'.format(video.title, video.watch_url))
+                video.streams.\
+                    filter(type='video', progressive=True, file_extension='mp4').\
+                    order_by('resolution').\
+                    desc().\
+                    first().\
+                    download(path)
+            except exceptions.VideoUnavailable:
+                print('The following video is unavailable: {}'.format(video))
+                # continue
+            except exceptions.PytubeError as error:
+                print('Error while processing the video {} from the playlist url: {}'.format(video, url))
+                traceback.print_tb(error.__traceback__)
+                #continue
 
 def main():
     args = get_arg()
