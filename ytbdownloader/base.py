@@ -53,34 +53,45 @@ def download(config):
     
 def process_urls(content):
     # Process YouTube urls
-    path = content['local_path']
-    urls = content['urls']
-    for q in range(len(urls)):
-        url = urls[q]
-        video = YouTube(url)
-        print('downloading : {} with url : {}'.format(video.title, video.watch_url))
-        video.streams.\
-        filter(progressive=True, file_extension='mp4').\
-        order_by('resolution').\
-        desc().\
-        first().\
-        download(path)
+    try:
+    # if True:
+        path = content['local_path']
+        urls = content['urls']
+        for q in range(len(urls)):
+            url = urls[q]
+            video = YouTube(url)
+            print('downloading : {} with url : {}'.format(video.title, video.watch_url))
+            video.streams.\
+            filter(progressive=True, file_extension='mp4').\
+            order_by('resolution').\
+            desc().\
+            first().\
+            download(path)
+    except Exception: # I can't exclud just "pytube.exceptions.RegexMatchError"
+        print(f'Bad url: "{url}" ' )
+        exit()
+
+   
         
 def process_playlist(content):
 #  Process YouTube Playlist 
-    path = content['local_path']
-    urls = content['urls']
-    for i in range(len(urls)):
-        url = urls[i]
-        playlist = Playlist(url)
-        for video in playlist.videos:
-            print('downloading : {} with url : {}'.format(video.title, video.watch_url))
-            video.streams.\
-                filter(type='video', progressive=True, file_extension='mp4').\
-                order_by('resolution').\
-                desc().\
-                first().\
-                download(path)
+    try:
+        path = content['local_path']
+        urls = content['urls']
+        for i in range(len(urls)):
+            url = urls[i]
+            playlist = Playlist(url)
+            for video in playlist.videos:
+                print('downloading : {} with url : {}'.format(video.title, video.watch_url))
+                video.streams.\
+                    filter(type='video', progressive=True, file_extension='mp4').\
+                    order_by('resolution').\
+                    desc().\
+                    first().\
+                    download(path)
+    except KeyError:
+        print(f'Bad url: "{url}" ' )
+        exit()
 
 def main():
     args = get_arg()

@@ -5,12 +5,19 @@
           "description" : "Супер Крылья" , 
           "local_path" : "/Users/galo/Downloads/video" , 
           "urls" : [ 
-             "https: / /www.youtube.com/watch?v=8eud2ZQHK1s " , 
-             " https://www.youtube.com/watch?v=8eud2ZQHK1s " , 
-             " https://www.youtube.com/watch?v=8eud2ZQHK1s " 
+             "https://www.youtube.com/watch?v=8eud2ZQHK1s"  
           ] , 
           "enable" : true 
-       } , 
+       } ,
+       { 
+          "type" : "youtube" ,
+          "description" : "Чип и Дейл" ,
+          "local_path" : "/Users/galo/Downloads/video" , 
+          "urls" : [ 
+             "https://www.youtube.com/watch?v=8eud2ZQHK" 
+          ] , 
+          "enable" : true 
+       },  
        { 
           "type" : "youtube" ,
           "description" : "Чип и Дейл" ,
@@ -29,7 +36,7 @@
           "urls" :[ 
              "https://www.youtube.com/watch?v=fjwF0sCbDtE&list=PL7x1DJTKugPDlSaK0UHPavBovuK8qT38f" 
           ] ,
-          "enable" : true 
+          "enable" : false
        } 
     ] 
  }
